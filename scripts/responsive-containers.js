@@ -17,7 +17,7 @@
                 }
             }
         }
-        //alert(els);
+
         // Parse the data-cq attribute and store resulting rules on the element.
         for (var i = 0, j = els.length; i<j; ++i) {
             var el = els[i];
@@ -25,7 +25,8 @@
             //alert(el.className);
             var raw_rules = el.getAttribute("data-cq").split(" ");
             for (var k = 0, l = raw_rules.length; k<l; ++k) {
-                cq_rules.push(raw_rules[k].split(":"));
+                var rule = /(.*):(.*)=(.*)/.exec(raw_rules[k]);
+                cq_rules.push(rule);
             }
             el.cq_rules = cq_rules;
         }
@@ -37,13 +38,13 @@
             el = els[i];
             for (var k = 0, l = el.cq_rules.length; k<l; ++k) {
                 var rule = el.cq_rules[k];
-                var compareFunction = getCompareFunction(rule[0]);
-                if ( compareFunction(el.offsetWidth, parseInt(rule[1])) ) {
-                    if (el.className.indexOf(rule[2]) < 0) {
-                        el.className += " " + rule[2];
+                var compareFunction = getCompareFunction(rule[1]);
+                if ( compareFunction(el.offsetWidth, parseInt(rule[2])) ) {
+                    if (el.className.indexOf(rule[3]) < 0) {
+                        el.className += " " + rule[3];
                     }
                 } else {
-                    el.className = (" " + el.className + " ").replace(" " + rule[2] + " ", " ");
+                    el.className = (" " + el.className + " ").replace(" " + rule[3] + " ", " ");
                 }
             }
         }
@@ -71,7 +72,7 @@
         loaded = true;
         findContainerQueries();
         applyRules();
-        // win.addEventListener("resize", applyRules, false);
+        //win.addEventListener("resize", applyRules, false);
     }
     
     if (doc.addEventListener) {
