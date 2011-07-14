@@ -72,7 +72,7 @@
         loaded = true;
         findContainerQueries();
         applyRules();
-        //win.addEventListener("resize", applyRules, false);
+        win.addEventListener("resize", applyRules, false);
     }
     
     if (doc.addEventListener) {

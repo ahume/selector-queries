@@ -18,6 +18,7 @@
             width: 80%;
             margin: 0 auto;
             overflow: hidden;
+            padding: 2em 2em 200px 2em;
         }
     
         .unit {
@@ -31,20 +32,38 @@
         }
         
         .my-list {
-           margin: 0;
+           margin: 1em;
            padding: 0; 
         }
         .my-list li {
             list-style: none;
-            float: left;
             margin: 0;
             padding: 0;
         }
         .my-list img {
             display: none;
         }
+        .my-list a {
+            color: #333;
+            display: block;
+            text-decoration: none;
+            border-bottom: 1px solid #AAA;
+            padding: 0.5em 1em;
+        }
+        .my-list a:hover {
+            background-color: #CCC;
+        }
+        .my-list.wide li {
+            float: left;
+            list-style: none;
+        }
         .my-list.wide img {
             display: block;
+            margin-bottom: 1em;
+        }
+        .my-list.wide a {
+            border-bottom: none;
+            text-align: center;
         }
         
     
@@ -59,28 +78,28 @@
         
         <div class="unit size1of3">
             
-            <h2>Component Title</h2>
+            <h2>Title</h2>
             
             <ul class="my-list" data-cq="min-width:400=wide">
                 <li>
-                    <img src="http://dummyimage.com/100x100" alt="">
-                    <p>And then there were 5</p>
+                    <a href="#"><img src="http://dummyimage.com/100x100" alt="">
+                    Item 1</a>
                 </li>
                 <li>
-                    <img src="http://dummyimage.com/100x100" alt="">
-                    <p>And then there were 5</p>
+                    <a href="#"><img src="http://dummyimage.com/100x100" alt="">
+                    Item 2</a>
                 </li>
                 <li>
-                    <img src="http://dummyimage.com/100x100" alt="">
-                    <p>And then there were 5</p>
+                    <a href="#"><img src="http://dummyimage.com/100x100" alt="">
+                    Item 3</a>
                 </li>
                 <li>
-                    <img src="http://dummyimage.com/100x100" alt="">
-                    <p>And then there were 5</p>
+                    <a href="#"><img src="http://dummyimage.com/100x100" alt="">
+                    Item 4</a>
                 </li>
                 <li>
-                    <img src="http://dummyimage.com/100x100" alt="">
-                    <p>And then there were 5</p>
+                    <a href="#"><img src="http://dummyimage.com/100x100" alt="">
+                    Item 5</a>
                 </li>
             </ul>
             
@@ -88,27 +107,27 @@
         
         <div class="unit size2of3">
             
-            <h2>Component Title</h2>
+            <h2>Title</h2>
             <ul class="my-list" data-cq="min-width:400=wide">
                 <li>
-                    <img src="http://dummyimage.com/100x100" alt="">
-                    <p>And then there were 5</p>
+                    <a href="#"><img src="http://dummyimage.com/100x100" alt="">
+                    Item 1</a>
                 </li>
                 <li>
-                    <img src="http://dummyimage.com/100x100" alt="">
-                    <p>And then there were 5</p>
+                    <a href="#"><img src="http://dummyimage.com/100x100" alt="">
+                    Item 2</a>
                 </li>
                 <li>
-                    <img src="http://dummyimage.com/100x100" alt="">
-                    <p>And then there were 5</p>
+                    <a href="#"><img src="http://dummyimage.com/100x100" alt="">
+                    Item 3</a>
                 </li>
                 <li>
-                    <img src="http://dummyimage.com/100x100" alt="">
-                    <p>And then there were 5</p>
+                    <a href="#"><img src="http://dummyimage.com/100x100" alt="">
+                    Item 4</a>
                 </li>
                 <li>
-                    <img src="http://dummyimage.com/100x100" alt="">
-                    <p>And then there were 5</p>
+                    <a href="#"><img src="http://dummyimage.com/100x100" alt="">
+                    Item 5</a>
                 </li>
             </ul>
             
