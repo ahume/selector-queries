@@ -21,7 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-(function(win) {
+(function (win) {
 
     var doc = win.document,
         els = [],
@@ -30,10 +30,10 @@ THE SOFTWARE.
     function findContainerQueries() {
         // Find data-squery attributes.
         if (doc.querySelectorAll) {
-            els = document.querySelectorAll("[data-squery]");
+            els = doc.querySelectorAll("[data-squery]");
         } else {
             // If no query selectors.
-            var e = document.getElementsByTagName("*");
+            var e = doc.getElementsByTagName("*");
             for (var i = 0, j = e.length; i<j; ++i) {
                 if (e[i].getAttribute("data-squery")) {
                     els.push(e[i]);
@@ -99,9 +99,9 @@ THE SOFTWARE.
             win.addEventListener("resize", applyRules, false);
         }
         
-        var current_em = emsToPixels(1, document.body);
+        var current_em = emsToPixels(1, doc.body);
         setInterval(function() {
-            var new_em = emsToPixels(1, document.body);
+            var new_em = emsToPixels(1, doc.body);
             if (new_em !== current_em) {
                 applyRules();
                 current_em = new_em;
@@ -111,7 +111,7 @@ THE SOFTWARE.
     }
 
     function emsToPixels(em, scope) {
-        var test = document.createElement("div");
+        var test = doc.createElement("div");
         test.style.fontSize = "1em";
         test.style.margin = "0";
         test.style.padding = "0";
@@ -124,7 +124,7 @@ THE SOFTWARE.
     }
 
     if (doc.addEventListener) {
-        document.addEventListener("DOMContentLoaded", contentReady, false);
+        doc.addEventListener("DOMContentLoaded", contentReady, false);
         // or
         win.addEventListener("load", contentReady, false);
     }
