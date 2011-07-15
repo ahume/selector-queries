@@ -21,7 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-(function (win) {
+(function(win) {
 
     var doc = win.document,
         els = [],
@@ -62,12 +62,14 @@ THE SOFTWARE.
             el = els[i];
             for (var k = 0, l = el.cq_rules.length; k<l; ++k) {
                 var rule = el.cq_rules[k];
-                
+
+                // Get a target width value in pixels.
                 var width = parseInt(rule[2]);
                 if (rule[3] === "em") {
                     width = emsToPixels(parseFloat(rule[2]), el);
                 }
 
+                // Test current width against target width and add/remove class values.
                 if ( compareFunction[rule[1]](el.offsetWidth, width) ) {
                     if (el.className.indexOf(rule[4]) < 0) {
                         el.className += " " + rule[4];
@@ -98,7 +100,8 @@ THE SOFTWARE.
         if (win.addEventListener) {
             win.addEventListener("resize", applyRules, false);
         }
-        
+
+        // Allow for resizing text after the page has loaded.
         var current_em = emsToPixels(1, doc.body);
         win.setInterval(function() {
             var new_em = emsToPixels(1, doc.body);
@@ -107,7 +110,6 @@ THE SOFTWARE.
                 current_em = new_em;
             }
         }, 100);
-        
     }
 
     function emsToPixels(em, scope) {
