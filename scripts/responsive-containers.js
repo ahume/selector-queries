@@ -5,24 +5,24 @@
         loaded = false;
 
     function findContainerQueries() {
-        // Find data-cq attributes.
+        // Find data-squery attributes.
         if (doc.querySelectorAll) {
-            els = document.querySelectorAll("[data-cq]");
+            els = document.querySelectorAll("[data-squery]");
         } else {
             // If no query selectors.
             var e = document.getElementsByTagName("*");
             for (var i = 0, j = e.length; i<j; ++i) {
-                if (e[i].getAttribute("data-cq")) {
+                if (e[i].getAttribute("data-squery")) {
                     els.push(e[i]);
                 }
             }
         }
 
-        // Parse the data-cq attribute and store resulting rules on the element.
+        // Parse the data-squery attribute and store resulting rules on the element.
         for (var i = 0, j = els.length; i<j; ++i) {
             var el = els[i];
             var cq_rules = [];
-            var raw_rules = el.getAttribute("data-cq").split(" ");
+            var raw_rules = el.getAttribute("data-squery").split(" ");
             for (var k = 0, l = raw_rules.length; k<l; ++k) {
                 var rule = /(.*):([0-9]*)=(.*)/.exec(raw_rules[k]);
                 cq_rules.push(rule);
