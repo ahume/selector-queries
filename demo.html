@@ -31,56 +31,70 @@
             width: 66%;
         }
         
-        .my-list {
-           margin: 1em;
+        .menu {
+           margin: 1em 1em 1em 0;
            padding: 0; 
         }
-        .my-list li {
+        .menu li {
             list-style: none;
             margin: 0;
             padding: 0;
         }
-        .my-list img {
+        .menu img {
             display: none;
         }
-        .my-list a {
+        .menu a:link,
+        .menu a:visited {
             color: #333;
             display: block;
             text-decoration: none;
             border-bottom: 1px solid #AAA;
             padding: 0.5em 1em;
         }
-        .my-list a:hover {
+        .menu a:hover,
+        .menu a:focus,
+        .menu a:active {
             background-color: #CCC;
+            color: #FFF;
         }
-        .my-list.wide li {
+        .menu li:first-child a {
+            border-top: 1px solid #AAA;
+        }
+        .menu.wide li {
             float: left;
             list-style: none;
         }
-        .my-list.wide img {
+        .menu.wide img {
             display: block;
             margin-bottom: 1em;
         }
-        .my-list.wide a {
-            border-bottom: none;
+        .menu.wide li a {
+            border: none;
             text-align: center;
         }
-        
-    
+        .codex {
+            color: green;
+        }
+        .codex .attr {
+            color: blue;
+        }
     </style>
-</head> 
-<body> 
-    
+</head>
+<body>
+
     <div class="stage">
-        
+
         <h1>Responsive Containers Test Page</h1>
-        <p>HTML components that respond to the size of their containing element. This works by applying testing the size of the element and adding removing class names based on some pre-defined width/height values.</p>
-        
+        <p>The two menus below both have identical HTML but are presented differently depending on their current width. At a 'typical' browser width the menu in the smaller column simply lists the links. In the larger column it displays extra images and lays out the options in a grid.</p>
+        <p>This is achieved with a small piece of JavaScript, which is activated by the code shown below.</p>
+        <p class="codex"><code>&lt;ul class=<span class="attr">"my-list"</span> data-sq=<span class="attr">"min-width:400=wide"</span>&gt;</code></p>
+        <p>Adding the <code>data-sq</code> attribute above causes a class value of <code>wide</code> to be added to the element when it is wider than 400 pixels, and extra CSS is applied to the element based on that class value.</p>
+
         <div class="unit size1of3">
             
-            <h2>Title</h2>
+            <h2>Menu</h2>
             
-            <ul class="my-list" data-cq="min-width:400=wide">
+            <ul class="menu" data-cq="min-width:400=wide">
                 <li>
                     <a href="#"><img src="http://dummyimage.com/100x100" alt="">
                     Item 1</a>
@@ -107,8 +121,8 @@
         
         <div class="unit size2of3">
             
-            <h2>Title</h2>
-            <ul class="my-list" data-cq="min-width:400=wide">
+            <h2>Menu</h2>
+            <ul class="menu" data-cq="min-width:400=wide">
                 <li>
                     <a href="#"><img src="http://dummyimage.com/100x100" alt="">
                     Item 1</a>
