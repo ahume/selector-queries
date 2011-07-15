@@ -95,12 +95,12 @@ THE SOFTWARE.
         loaded = true;
         findContainerQueries();
         applyRules();
-        if (doc.addEventListener) {
+        if (win.addEventListener) {
             win.addEventListener("resize", applyRules, false);
         }
         
         var current_em = emsToPixels(1, doc.body);
-        setInterval(function() {
+        win.setInterval(function() {
             var new_em = emsToPixels(1, doc.body);
             if (new_em !== current_em) {
                 applyRules();
