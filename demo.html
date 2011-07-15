@@ -85,16 +85,17 @@
     <div class="stage">
 
         <h1>Responsive Containers Test Page</h1>
-        <p>The two menus below both have identical HTML but are presented differently depending on their current width. At a 'typical' browser width the menu in the smaller column simply lists the links. In the larger column it displays extra images and lays out the options in a grid.</p>
+        <p>The two menus below both have identical HTML but are presented differently depending on their current width. At a 'typical' browser width and font size the menu in the smaller column simply lists the links. In the larger column it displays extra images and lays out the options in a grid.</p>
         <p>This is achieved with a small piece of JavaScript, which is activated by the code shown below.</p>
-        <p class="codex"><code>&lt;ul class=<span class="attr">"my-list"</span> data-squery=<span class="attr">"min-width:400=wide"</span>&gt;</code></p>
-        <p>Adding the <code>data-squery</code> attribute above causes a class value of <code>wide</code> to be added to the element when it is wider than 400 pixels, and extra CSS is applied to the element based on that class value.</p>
+        <p class="codex"><code>&lt;ul class=<span class="attr">"my-list"</span> data-squery=<span class="attr">"min-width:30em=wide"</span>&gt;</code></p>
+        <p>Adding the <code>data-squery</code> attribute above causes a class value of <code>wide</code> to be added to the element when it is wider than 30 ems, and extra CSS is applied to the element based on that class value.</p>
+        <p>Currently you can use <code>em</code> or <code>px</code> units.</p>
 
         <div class="unit size1of3">
             
             <h2>Menu</h2>
             
-            <ul class="menu" data-squery="min-width:400=wide">
+            <ul class="menu" data-squery="min-width:30em=wide">
                 <li>
                     <a href="#"><img src="http://dummyimage.com/100x100" alt="">
                     Item 1</a>
@@ -122,7 +123,7 @@
         <div class="unit size2of3">
             
             <h2>Menu</h2>
-            <ul class="menu" data-squery="min-width:400=wide">
+            <ul class="menu" data-squery="min-width:30em=wide">
                 <li>
                     <a href="#"><img src="http://dummyimage.com/100x100" alt="">
                     Item 1</a>
@@ -144,9 +145,9 @@
                     Item 5</a>
                 </li>
             </ul>
-            
         </div>
     </div>
+    
 
     
 

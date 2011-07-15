@@ -24,8 +24,10 @@
             var cq_rules = [];
             var raw_rules = el.getAttribute("data-squery").split(" ");
             for (var k = 0, l = raw_rules.length; k<l; ++k) {
-                var rule = /(.*):([0-9]*)=(.*)/.exec(raw_rules[k]);
-                cq_rules.push(rule);
+                var rule = /(.*):([0-9]*)(px|em)=(.*)/.exec(raw_rules[k]);
+                if (rule) {
+                    cq_rules.push(rule);
+                }
             }
             el.cq_rules = cq_rules;
         }
@@ -37,12 +39,18 @@
             el = els[i];
             for (var k = 0, l = el.cq_rules.length; k<l; ++k) {
                 var rule = el.cq_rules[k];
-                if ( compareFunction[rule[1]](el.offsetWidth, parseInt(rule[2])) ) {
-                    if (el.className.indexOf(rule[3]) < 0) {
-                        el.className += " " + rule[3];
+                
+                var width = parseInt(rule[2]);
+                if (rule[3] === "em") {
+                    width = emsToPixels(parseFloat(rule[2]), el);
+                }
+
+                if ( compareFunction[rule[1]](el.offsetWidth, width) ) {
+                    if (el.className.indexOf(rule[4]) < 0) {
+                        el.className += " " + rule[4];
                     }
                 } else {
-                    el.className = (" " + el.className + " ").replace(" " + rule[3] + " ", " ");
+                    el.className = (" " + el.className + " ").replace(" " + rule[4] + " ", " ");
                 }
             }
         }
@@ -67,6 +75,29 @@
         if (doc.addEventListener) {
             win.addEventListener("resize", applyRules, false);
         }
+        
+        var current_em = emsToPixels(1, document.body);
+        setInterval(function() {
+            var new_em = emsToPixels(1, document.body);
+            if (new_em !== current_em) {
+                applyRules();
+                current_em = new_em;
+            }
+        }, 100);
+        
+    }
+
+    function emsToPixels(em, scope) {
+        var test = document.createElement("div");
+        test.style.fontSize = "1em";
+        test.style.margin = "0";
+        test.style.padding = "0";
+        test.style.border = "none";
+        test.style.width = "1em";
+        scope.appendChild(test);
+        var val = test.offsetWidth;
+        scope.removeChild(test);
+        return Math.round(val * em);
     }
 
     if (doc.addEventListener) {
