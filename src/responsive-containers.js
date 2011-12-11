@@ -100,7 +100,6 @@ THE SOFTWARE.
         if (win.addEventListener) {
             win.addEventListener("resize", applyRules, false);
         }
-
         // Allow for resizing text after the page has loaded.
         var current_em = emsToPixels(1, doc.body);
         win.setInterval(function() {

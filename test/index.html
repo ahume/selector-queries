@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Selector Queries Test Suite</title>
+	<link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-git.css" media="screen">
+	<script src="http://code.jquery.com/qunit/qunit-git.js"></script>
+	<script src="../src/responsive-containers.js"></script>
+	<script src="tests.js"></script>
+	<style>
+        #test-big {
+            width: 500px;
+            height: 20px;
+            background: red;
+        }
+	    #test-small {
+	        width: 300px;
+	        height: 20px;
+	        background: yellow;
+	    }
+	</style>
+
+</head>
+<body>
+	<h1 id="qunit-header">Selector Queries Test Suite</h1>
+	<h2 id="qunit-banner"></h2>
+	<div id="qunit-testrunner-toolbar"></div>
+	<h2 id="qunit-userAgent"></h2>
+	<ol id="qunit-tests"></ol>
+
+	<!-- elements for applying css via queries -->
+	<div id="test-big" data-squery="min-width:400px=wide"></div>
+	<div id="test-small"></div>
+
+</body>
+</html>
