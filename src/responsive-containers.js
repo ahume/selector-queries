@@ -92,8 +92,7 @@ THE SOFTWARE.
                 }
 
                 // Calculate the width of the target without the class added.
-                var defaultWidth3 = getDefaultWidth(el, rule[4]);
-                var defaultWidth = el.offsetWidth;
+                var defaultWidth = getDefaultWidth(el, rule[4]);
                 // Test current width against target width and add/remove class values.
                 if ( compareFunction[rule[1]](defaultWidth, width) ) {
                     if (el.className.indexOf(rule[4]) < 0) {
@@ -184,7 +183,7 @@ THE SOFTWARE.
     }
 
 
-    win.SelectorQueries = {
+    win["SelectorQueries"] = {
         "add": add,
         "ignoreDataAttributes": ignoreDataAttributes
     }
