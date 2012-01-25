@@ -99,7 +99,9 @@ THE SOFTWARE.
                         el.className += " " + rule[4];
                     }
                 } else {
-                    el.className = (" " + el.className + " ").replace(" " + rule[4] + " ", " ");
+                    var class_name = el.className.replace(new RegExp('(^| )'+rule[4]+'( |$)'), '$1'); 
+                    class_name = class_name.replace(/ $/, '');
+                    el.className = class_name;
                 }
             }
         }
