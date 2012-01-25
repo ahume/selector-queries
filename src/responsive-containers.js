@@ -92,12 +92,9 @@ THE SOFTWARE.
                 }
 
                 // Test current width against target width and add/remove class values.
+                el.className = (" " + el.className + " ").replace(" " + rule[4] + " ", " ");
                 if ( compareFunction[rule[1]](el.offsetWidth, width) ) {
-                    if (el.className.indexOf(rule[4]) < 0) {
-                        el.className += " " + rule[4];
-                    }
-                } else {
-                    el.className = (" " + el.className + " ").replace(" " + rule[4] + " ", " ");
+                    el.className += " " + rule[4];
                 }
             }
         }
