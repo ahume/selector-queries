@@ -91,8 +91,10 @@ THE SOFTWARE.
                     width = emsToPixels(parseFloat(rule[2]), el);
                 }
 
+                // Calculate the width of the target without the class added.
+                var defaultWidth = getDefaultWidth(el, rule[4]);
                 // Test current width against target width and add/remove class values.
-                if ( compareFunction[rule[1]](el.offsetWidth, width) ) {
+                if ( compareFunction[rule[1]](defaultWidth, width) ) {
                     if (el.className.indexOf(rule[4]) < 0) {
                         el.className += " " + rule[4];
                     }
@@ -153,6 +155,19 @@ THE SOFTWARE.
         scope.removeChild(test);
         return Math.round(val * em);
     });
+
+    var originalWidth = function(el, class_name) {
+        var test = el.cloneNode(true);
+        test.className = (" " + test.className + " ").replace(" " + class_name + " ", " ");
+        test.style.height = 0;
+        test.style.visibility = "none";
+        test.style.overflow = "hidden";
+        var parent = el.parentNode;
+        parent.appendChild(test);
+        var val = test.offsetWidth;
+        parent.removeChild(test);
+        return val;
+    }
 
     if (doc.addEventListener) {
         doc.addEventListener("DOMContentLoaded", contentReady, false);
