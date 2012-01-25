@@ -111,7 +111,15 @@ THE SOFTWARE.
         }, 100);
     }
 
-    function emsToPixels(em, scope) {
+    function memoize( f ) {
+        return function () {
+            var args = Array.prototype.slice.call(arguments);
+            f.memoize = f.memoize || {};
+            return (args in f.memoize) ? f.memoize[args] : f.memoize[args] = f.apply(this, args);
+        };
+    }
+
+    var emsToPixels = memoize(function(em, scope) {
         var test = doc.createElement("div");
         test.style.fontSize = "1em";
         test.style.margin = "0";
@@ -122,7 +130,7 @@ THE SOFTWARE.
         var val = test.offsetWidth;
         scope.removeChild(test);
         return Math.round(val * em);
-    }
+    });
 
     if (doc.addEventListener) {
         doc.addEventListener("DOMContentLoaded", contentReady, false);
