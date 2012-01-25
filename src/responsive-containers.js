@@ -93,9 +93,7 @@ THE SOFTWARE.
 
                 // Calculate the width of the target without the class added.
                 var defaultWidth3 = getDefaultWidth(el, rule[4]);
-                console.log(defaultWidth3)
                 var defaultWidth = el.offsetWidth;
-                console.log(defaultWidth)
                 // Test current width against target width and add/remove class values.
                 if ( compareFunction[rule[1]](defaultWidth, width) ) {
                     if (el.className.indexOf(rule[4]) < 0) {
