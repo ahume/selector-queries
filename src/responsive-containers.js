@@ -165,7 +165,7 @@ THE SOFTWARE.
         test.style.overflow = "hidden";
         test.style.clear = "both";
         var parent = el.parentNode;
-        parent.appendChild(test);
+        parent.insertBefore(test, el);
         var val = test.offsetWidth;
         parent.removeChild(test);
         return val;
