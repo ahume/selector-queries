@@ -25,34 +25,56 @@ THE SOFTWARE.
 
     var doc = win.document,
         els = [],
+        check_data_attributes = true,
         loaded = false;
 
-    function findContainerQueries() {
-        // Find data-squery attributes.
-        if (doc.querySelectorAll) {
-            els = doc.querySelectorAll("[data-squery]");
-        } else {
-            // If no query selectors.
-            var e = doc.getElementsByTagName("*");
-            for (var i = 0, j = e.length; i<j; ++i) {
-                if (e[i].getAttribute("data-squery")) {
-                    els.push(e[i]);
-                }
-            }
+    function add(elements, query, value, class_name) {
+        var split_value = /([0-9]*)(px|em)/.exec(value);
+        for (var i = 0, j = elements.length; i<j; ++i) {
+            var el = elements[i];
+            el.cq_rules = el.cq_rules || [];
+            el.cq_rules.push([null, query, split_value[1], split_value[2], class_name]);
+            els.push(el);
         }
+        if (loaded) { // if we're not 'loaded' yet, domLoaded will run applyRules() for us.
+            applyRules();
+        }
+    }
 
-        // Parse the data-squery attribute and store resulting rules on the element.
-        for (var i = 0, j = els.length; i<j; ++i) {
-            var el = els[i];
-            var cq_rules = [];
-            var raw_rules = el.getAttribute("data-squery").split(" ");
-            for (var k = 0, l = raw_rules.length; k<l; ++k) {
-                var rule = /(.*):([0-9]*)(px|em)=(.*)/.exec(raw_rules[k]);
-                if (rule) {
-                    cq_rules.push(rule);
+    function ignoreDataAttributes() {
+        check_data_attributes = false;
+    }
+
+    function findContainerQueries() {
+        if (check_data_attributes) {
+            // Find data-squery attributes.
+            var nodes = [];
+            if (doc.querySelectorAll) {
+                var nodes = doc.querySelectorAll("[data-squery]");
+            } else {
+                // If no query selectors.
+                var e = doc.getElementsByTagName("*");
+                for (var i = 0, j = e.length; i<j; ++i) {
+                    if (e[i].getAttribute("data-squery")) {
+                        nodes.push(e[i]);
+                    }
                 }
             }
-            el.cq_rules = cq_rules;
+            // Parse the data-squery attribute and store resulting rules on the element.
+            for (var i = 0, j = nodes.length; i<j; ++i) {
+                var el = nodes[i];
+                var cq_rules = [];
+                var raw_rules = el.getAttribute("data-squery").split(" ");
+                for (var k = 0, l = raw_rules.length; k<l; ++k) {
+                    var rule = /(.*):([0-9]*)(px|em)=(.*)/.exec(raw_rules[k]);
+                    if (rule) {
+                        cq_rules.push(rule);
+                    }
+                }
+                el.cq_rules = el.cq_rules || [];
+                el.cq_rules = el.cq_rules.concat(cq_rules);
+                els.push(el);
+            }
         }
     }
 
@@ -142,6 +164,12 @@ THE SOFTWARE.
         doc.attachEvent("onreadystatechange", contentReady);
         // or
         win.attachEvent("onload", contentReady);
+    }
+
+
+    win.SelectorQueries = {
+        "add": add,
+        "ignoreDataAttributes": ignoreDataAttributes
     }
 
 })(this);
