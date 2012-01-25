@@ -57,6 +57,9 @@
             background-color: #CCC;
             color: #FFF;
         }
+        .menu li:first-child a {
+            border-top: 1px solid #AAA;
+        }
         .menu.wide li {
             float: left;
             list-style: none;
@@ -69,16 +72,6 @@
             border: none;
             text-align: center;
         }
-        .menu li {
-            width: 49%;
-            float: left;
-            border-left: 1px solid #AAA;
-        }
-        .menu li.wide {
-            width: 100%;
-            float: none;
-        }
-        
         .codex {
             color: green;
         }
@@ -106,7 +99,7 @@
             
             <h2>Menu</h2>
             
-            <ul class="menu">
+            <ul class="menu" data-squery="min-width:30em=wide">
                 <li>
                     <a href="#"><img src="http://dummyimage.com/100x100" alt="">
                     Item 1</a>
@@ -134,7 +127,7 @@
         <div class="unit size2of3">
             
             <h2>Menu</h2>
-            <ul class="menu">
+            <ul class="menu" data-squery="min-width:30em=wide">
                 <li>
                     <a href="#"><img src="http://dummyimage.com/100x100" alt="">
                     Item 1</a>
@@ -166,9 +159,9 @@
 
     <script>
 
-        var els = document.querySelectorAll(".menu li");
-        SelectorQueries.add(els, "max-width", "15em", "wide");
-        SelectorQueries.ignoreDataAttributes();
+        //var els = document.querySelectorAll(".menu2");
+        //SelectorQueries.add(els, "min-width", "30em", "wide");
+        //SelectorQueries.ignoreDataAttributes();
 
     </script>
 
