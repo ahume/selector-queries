@@ -69,15 +69,6 @@
             border: none;
             text-align: center;
         }
-        .menu li {
-            width: 49%;
-            float: left;
-            border-left: 1px solid #AAA;
-        }
-        .menu li.wide {
-            width: 100%;
-            float: none;
-        }
         
         .codex {
             color: green;
@@ -166,8 +157,8 @@
 
     <script>
 
-        var els = document.querySelectorAll(".menu li");
-        SelectorQueries.add(els, "max-width", "15em", "wide");
+        var els = document.querySelectorAll(".menu");
+        SelectorQueries.add(els, "max-width", "30em", "wide");
         SelectorQueries.ignoreDataAttributes();
 
     </script>
