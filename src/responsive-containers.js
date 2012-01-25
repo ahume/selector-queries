@@ -156,7 +156,7 @@ THE SOFTWARE.
         return Math.round(val * em);
     });
 
-    var originalWidth = function(el, class_name) {
+    var getDefaultWidth = function(el, class_name) {
         var test = el.cloneNode(true);
         test.className = (" " + test.className + " ").replace(" " + class_name + " ", " ");
         test.style.height = 0;
