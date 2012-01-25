@@ -92,9 +92,9 @@ THE SOFTWARE.
                 }
 
                 // Calculate the width of the target without the class added.
-                var originalWidth = calculateOriginalWidth(el, rule[4]);
+                var defaultWidth = getDefaultWidth(el, rule[4]);
                 // Test current width against target width and add/remove class values.
-                if ( compareFunction[rule[1]](originalWidth, width) ) {
+                if ( compareFunction[rule[1]](defaultWidth, width) ) {
                     if (el.className.indexOf(rule[4]) < 0) {
                         el.className += " " + rule[4];
                     }
@@ -156,17 +156,16 @@ THE SOFTWARE.
         return Math.round(val * em);
     });
 
-    var calculateOriginalWidth = function(el, elClass) {
-        var parentEl = el.parentNode,
-            test = el.cloneNode(true);
-        test.className = (" " + test.className + " ").replace(" " + elClass + " ", " ");
+    var originalWidth = function(el, class_name) {
+        var test = el.cloneNode(true);
+        test.className = (" " + test.className + " ").replace(" " + class_name + " ", " ");
         test.style.height = 0;
         test.style.visibility = "none";
         test.style.overflow = "hidden";
-        parentEl.appendChild(test);
+        var parent = el.parentNode;
+        parent.appendChild(test);
         var val = test.offsetWidth;
-        parentEl.removeChild(test);
-        console.log(val);
+        parent.removeChild(test);
         return val;
     }
 
