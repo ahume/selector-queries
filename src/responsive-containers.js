@@ -162,7 +162,7 @@ THE SOFTWARE.
         var test = el.cloneNode(true);
         test.className = (" " + test.className + " ").replace(" " + class_name + " ", " ");
         test.style.height = 0;
-        test.style.visibility = "none";
+        test.style.visibility = "hidden";
         test.style.overflow = "hidden";
         test.style.clear = "both";
         var parent = el.parentNode;
