@@ -85,6 +85,11 @@ THE SOFTWARE.
             for (var k = 0, l = el.cq_rules.length; k<l; ++k) {
                 var rule = el.cq_rules[k];
 
+                // Skip elements that are not attached to the DOM yet.
+                if (!el.parentNode) {
+                    continue;
+                }
+
                 // Get a target width value in pixels.
                 var width = parseInt(rule[2]);
                 if (rule[3] === "em") {
